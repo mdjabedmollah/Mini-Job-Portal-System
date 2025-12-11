@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import authRoute from './router/authRoute.js'
 import adminRoute from './router/jobRoute.js'
+
+import applicationRoute from './router/applicationRoute.js'
 import { DBconnection } from './utils/db.js'
 dotenv.config()
 
@@ -20,6 +22,7 @@ app.use(cors())
 // all api
 app.use('/api/auth',authRoute)
 app.use('/api/job',adminRoute)
+app.use('/api/job',applicationRoute)
 
 
 
