@@ -11,7 +11,7 @@ const LoginRegister = () => {
     password: "",
     skills: "",
     experience: "",
-    role: "user", // ✅ default role
+    role: "user", 
   });
 
   const { login } = useAuth();
@@ -40,7 +40,6 @@ const LoginRegister = () => {
           password: form.password,
           skills: skillsArr,
           experience: form.experience,
-          role: form.role, // ✅ role sent to backend
         });
 
         login(res.data);
@@ -70,7 +69,7 @@ const LoginRegister = () => {
                 className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
               />
 
-              {/* ✅ Role */}
+             
               <select
                 name="role"
                 value={form.role}
