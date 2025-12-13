@@ -1,4 +1,3 @@
-// frontend/src/pages/LoginRegister.jsx
 import { useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
@@ -12,6 +11,7 @@ const LoginRegister = () => {
     password: "",
     skills: "",
     experience: "",
+    role: "user", // ✅ default role
   });
 
   const { login } = useAuth();
@@ -33,10 +33,16 @@ const LoginRegister = () => {
         const skillsArr = form.skills
           ? form.skills.split(",").map((s) => s.trim())
           : [];
+
         const res = await api.post("/auth/register", {
-          ...form,
+          name: form.name,
+          email: form.email,
+          password: form.password,
           skills: skillsArr,
+          experience: form.experience,
+          role: form.role, // ✅ role sent to backend
         });
+
         login(res.data);
       }
       navigate("/");
@@ -61,15 +67,26 @@ const LoginRegister = () => {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
               />
+
+              {/* ✅ Role */}
+              <select
+                name="role"
+                value={form.role}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
+              >
+                <option value="user">Job Seeker</option>
+                <option value="admin">Admin</option>
+              </select>
 
               <input
                 name="skills"
                 placeholder="Skills (comma separated)"
                 value={form.skills}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
               />
 
               <input
@@ -77,7 +94,7 @@ const LoginRegister = () => {
                 placeholder="Experience (optional)"
                 value={form.experience}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
               />
             </>
           )}
@@ -89,7 +106,7 @@ const LoginRegister = () => {
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
           />
 
           <input
@@ -99,7 +116,7 @@ const LoginRegister = () => {
             value={form.password}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-purple-500"
           />
 
           <button
