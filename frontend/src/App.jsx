@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 // import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 // import Register from "./pages/Register";
 // import JobList from "./pages/JobList";
 // import JobDetails from "./pages/JobDetails";
@@ -18,7 +18,7 @@ const App = () => (
 
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/register" element={<Register />} /> */}
 
         {/* <Route path="/jobs" element={ */}
