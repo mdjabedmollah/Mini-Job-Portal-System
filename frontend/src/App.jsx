@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-// import Register from "./pages/Register";
+import Register from "./pages/Register";
 // import JobList from "./pages/JobList";
 // import JobDetails from "./pages/JobDetails";
 // import AdminDashboard from "./pages/AdminDashboard";
@@ -19,7 +19,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<Register />} />
 
         {/* <Route path="/jobs" element={ */}
           {/* <ProtectedRoute><JobList /></ProtectedRoute> */}
