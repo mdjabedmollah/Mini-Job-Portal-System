@@ -36,6 +36,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.options("*", cors());
+
 
 // all api
 app.use('/api/auth',authRoute)
