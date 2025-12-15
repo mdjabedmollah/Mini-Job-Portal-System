@@ -17,7 +17,13 @@ DBconnection()
 //middleware 
 app.use(express.json())
 app.use(urlencoded({extended:true}))
-app.use(cors())
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://mini-job-portal-system.vercel.app"
+  ],
+  credentials: true
+}))
 
 // all api
 app.use('/api/auth',authRoute)
