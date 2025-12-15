@@ -3,7 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -25,9 +25,9 @@ const App = () => (
         <Route
           path="/jobs"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <JobList />
-            // </ProtectedRoute>
+             </ProtectedRoute>
           }
         />
 
