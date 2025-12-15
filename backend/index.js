@@ -9,7 +9,7 @@ import { DBconnection } from './utils/db.js'
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3002
 //Data base
 
 DBconnection()
