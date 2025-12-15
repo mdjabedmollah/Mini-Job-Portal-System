@@ -5,30 +5,58 @@ import { useAuth } from "../context/AuthContext";
 
 const JobDetails = () => {
   const { id } = useParams();
-  const [job, setJob] = useState(null);
   const { user } = useAuth();
 
+  const [job, setJob] = useState(null);
+  const [applied, setApplied] = useState(false);
+
+  // fetch job
   useEffect(() => {
-    api.get(`/job/${id}`).then(res => setJob(res.data.job));
+    api.get(`/job/${id}`)
+      .then((res) => setJob(res.data.job))
+      .catch(console.error);
   }, [id]);
 
+  // apply job
   const applyJob = async () => {
-    await api.post(`/job/apply/${id}`);
-    alert("Applied successfully");
+    try {
+      await api.post(`/job/apply/${id}`);
+      setApplied(true);
+      alert("Applied successfully");
+    } catch (err) {
+      alert(err.response?.data?.message || "Apply failed");
+    }
   };
 
-  if (!job) return <p>Loading...</p>;
+  if (!job) return <p className="p-6">Loading...</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold">{job.title}</h2>
-      <p>{job.company} • {job.location}</p>
-      <p>{job.description}</p>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-2xl font-bold">{job.title}</h1>
+      <p className="text-gray-600">
+        {job.company} • {job.location}
+      </p>
 
+      {job.salaryRange && (
+        <p className="text-purple-600 mt-2">
+          Salary: {job.salaryRange}
+        </p>
+      )}
+
+      <p className="mt-4 text-gray-700">{job.description}</p>
+
+      {/* Apply Button */}
       {user?.role === "user" && (
-        <button onClick={applyJob}
-          className="mt-3 bg-purple-600 text-white px-4 py-2">
-          Apply
+        <button
+          onClick={applyJob}
+          disabled={applied}
+          className={`mt-6 px-6 py-2 rounded text-white ${
+            applied
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-purple-600 hover:bg-purple-700"
+          }`}
+        >
+          {applied ? "Already Applied" : "Apply Now"}
         </button>
       )}
     </div>
