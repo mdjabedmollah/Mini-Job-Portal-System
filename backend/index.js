@@ -18,11 +18,12 @@ DBconnection()
 app.use(express.json())
 app.use(urlencoded({extended:true}))
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://mini-job-portal-system.vercel.app"
-  ],
-  credentials: true
+ origin: [
+      "http://localhost:5173",
+      "https://mini-job-portal-system.vercel.app",
+      "https://mini-job-portal-system-7gfnqun2k-mdjabed2167-gmailcoms-projects.vercel.app"
+    ],
+    credentials: true
 }))
 
 // all api
