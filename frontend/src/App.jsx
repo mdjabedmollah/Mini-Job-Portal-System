@@ -9,8 +9,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import JobList from "./pages/JobList";
-// import JobDetails from "./pages/JobDetails";
-// import AdminDashboard from "./pages/AdminDashboard";
+import JobDetails from "./pages/JobDetails";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => (
   <AuthProvider>
@@ -31,23 +31,23 @@ const App = () => (
           }
         />
 
-        {/* <Route
+        <Route
           path="/jobs/:id"
           element={
             <ProtectedRoute>
               <JobDetails />
             </ProtectedRoute>
           }
-        /> */}
+        />
 
-        {/* <Route
+        <Route
           path="/admin"
           element={
             <ProtectedRoute>
               <AdminDashboard />
             </ProtectedRoute>
           }
-        /> */}
+        />
       </Routes>
 
       <Footer />
