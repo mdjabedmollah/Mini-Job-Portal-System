@@ -19,33 +19,13 @@ DBconnection();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://mini-job-portal-system.vercel.app",
-  "https://mini-job-portal-system-7gfnqun2k-mdjabed2167-gmailcoms-projects.vercel.app",
-  "https://mini-job-portal-system-git-main-mdjabed2167-gmailcoms-projects.vercel.app"
-];
+const corsOption = {
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
+  origin: "http://localhost:5173",
+  credentials: true,
+};
+app.use(cors(corsOption));
 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
 
 // Routes
 app.use("/api/auth", authRoute);
